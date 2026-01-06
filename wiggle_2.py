@@ -744,11 +744,11 @@ class WiggleSelect(bpy.types.Operator):
     """Select wiggle bones on selected objects in pose mode"""
     bl_idname = "wiggle.select"
     bl_label = "Select Enabled"
-    
+
     @classmethod
     def poll(cls,context):
         return context.mode in ['POSE']
-    
+
     def execute(self,context):
         bpy.ops.pose.select_all(action='DESELECT')
         rebuild = False
@@ -762,7 +762,7 @@ class WiggleSelect(bpy.types.Operator):
                 if not b:
                     rebuild = True
                     continue
-                b.bone.select = True
+                b.select = True  # Select the pose bone directly
         if rebuild: build_list()
         return {'FINISHED'}
     
